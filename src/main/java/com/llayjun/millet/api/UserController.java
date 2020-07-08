@@ -14,6 +14,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.llayjun.millet.common.constant.Constants.APP_URI_V1;
 
 /**
@@ -26,7 +28,7 @@ import static com.llayjun.millet.common.constant.Constants.APP_URI_V1;
 public class UserController {
 
     @GetMapping("/hello")
-    @ApiOperation(value = "测试文字接口")
+    @ApiOperation(value = "测试文字接口", notes = "测试文字接口")
     public String hello() {
         return "hello , this is a spring boot, haha";
     }
@@ -34,9 +36,9 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @ApiOperation(value = "注册用户")
+    @ApiOperation(value = "注册用户", notes = "注册用户")
     @PostMapping("/register")
-    public Result insertUser(@Validated @RequestBody UserDTO userDTO) {
+    public Result<String> insertUser(@Validated @RequestBody UserDTO userDTO) {
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
         // 判断是否存在重复的手机号
@@ -44,32 +46,32 @@ public class UserController {
         wrapper.eq(User::getMobile, user.getMobile());
         int count = userService.count(wrapper);
         if (count > 0) {
-            return Result.genFail("已经存在该手机号");
+            return new Result<String>().genFail("已经存在该手机号");
         }
         boolean state = userService.save(user);
         if (!state) {
-            return Result.genFail("注册失败");
+            return new Result<String>().genFail("注册失败");
         }
-        return Result.genSuccess("注册成功");
+        return new Result<String>().genSuccess("注册成功");
     }
 
-    @ApiOperation(value = "更新用户")
+    @ApiOperation(value = "更新用户", notes = "更新用户")
     @PutMapping("/change/{id}")
-    public Result insertUser(@PathVariable String id, @Validated @RequestBody UserDTO userDTO) {
+    public Result<String> insertUser(@PathVariable String id, @Validated @RequestBody UserDTO userDTO) {
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
         user.setId(id);
         boolean state = userService.updateById(user);
         if (!state) {
-            return Result.genFail("更新失败");
+            return new Result<String>().genFail("更新失败");
         }
-        return Result.genSuccess("更新成功");
+        return new Result<String>().genSuccess("更新成功");
     }
 
-    @ApiOperation(value = "获取所有用户信息")
+    @ApiOperation(value = "获取所有用户信息", notes = "获取所有用户信息")
     @GetMapping("/findAll")
-    public Result findAll(){
-        return Result.genSuccess(userService.findAll());
+    public Result<List<User>> findAll(){
+        return new Result<List<User>>().genSuccessData(userService.findAll());
     }
 
 }

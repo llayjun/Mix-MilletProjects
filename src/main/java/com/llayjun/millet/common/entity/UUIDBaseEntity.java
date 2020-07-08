@@ -21,6 +21,7 @@ public class UUIDBaseEntity {
     protected String id;
 
     @ApiModelProperty(hidden = true)
+    @JsonIgnore
     @TableField(fill = FieldFill.INSERT)
     protected LocalDateTime createdTime;
 

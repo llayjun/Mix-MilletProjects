@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface IBannerService extends IService<Banner> {
 
-    List<String> getBannerList();
+    List<Banner> getBannerList();
 }

@@ -18,11 +18,12 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="Banner对象", description="轮播图")
+@ApiModel(value = "Banner对象")
 public class Banner extends UUIDBaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(required = true, value = "图片url", example = "http://www.baidu.com")
     private String imageUrl;
 
 }

@@ -24,7 +24,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
     BannerMapper bannerMapper;
 
     @Override
-    public List<String> getBannerList() {
+    public List<Banner> getBannerList() {
         return bannerMapper.getBannerList();
     }
 }

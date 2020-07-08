@@ -10,19 +10,19 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @TableName("user")
-@ApiModel(value="User对象", description="用户信息")
+@ApiModel(value="User对象")
 public class User extends UUIDBaseEntity{
 
-    @ApiModelProperty(value = "用户名字")
+    @ApiModelProperty(value = "用户名字", example = "name")
     private String name;
 
-    @ApiModelProperty(value = "用户性别")
+    @ApiModelProperty(value = "用户性别", example = "1")
     private int sex;
 
-    @ApiModelProperty(value = "用户手机号")
+    @ApiModelProperty(value = "用户手机号", example = "13142667578")
     private String mobile;
 
-    @ApiModelProperty(value = "用户密码")
+    @ApiModelProperty(value = "用户密码", example = "12345678")
     private String passWord;
 
 }

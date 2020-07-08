@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface BannerMapper extends BaseMapper<Banner> {
 
-    List<String> getBannerList();
+    List<Banner> getBannerList();
 
 }
