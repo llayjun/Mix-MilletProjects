@@ -1,0 +1,19 @@
+package com.llayjun.millet.module.banner.service;
+
+import com.llayjun.millet.module.banner.entity.Banner;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
+
+/**
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author zyl
+ * @since 2020-07-07
+ */
+public interface IBannerService extends IService<Banner> {
+
+    List<String> getBannerList();
+}
