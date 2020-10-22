@@ -7,11 +7,11 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @author zyl
- * @description 描述
+ * @description 用户登录
  * @date 2020/7/6 9:08 上午
  */
 @Data
-public class UserDTO {
+public class UserLoginDTO {
 
     @ApiModelProperty(value = "手机号", required = true)
     @NotBlank(message = "手机号不能为空")

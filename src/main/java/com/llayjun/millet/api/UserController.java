@@ -2,12 +2,14 @@ package com.llayjun.millet.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.llayjun.millet.common.entity.Result;
-import com.llayjun.millet.module.user.dto.UserDTO;
+import com.llayjun.millet.common.entity.BaseResult;
+import com.llayjun.millet.module.user.dto.UserLoginDTO;
+import com.llayjun.millet.module.user.dto.UserRegisterDTO;
 import com.llayjun.millet.module.user.entity.User;
 import com.llayjun.millet.module.user.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.validation.annotation.Validated;
@@ -37,75 +39,77 @@ public class UserController {
 
     @ApiOperation(value = "用户登录", notes = "用户登录接口")
     @PostMapping("/userLogin")
-    public Result<User> userLogin(@Validated @RequestBody UserDTO userDTO) {
+    public BaseResult<User> userLogin(@Validated @RequestBody UserLoginDTO userLoginDTO) {
         // 判断是否存在重复的手机号
         LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(User::getMobile, userDTO.getMobile());
+        wrapper.eq(User::getMobile, userLoginDTO.getMobile());
         int count = userService.count(wrapper);
         if (count <= 0) {
-            return new Result<User>().genFail("用户不存在");
+            return BaseResult.error("用户不存在");
         }
-        wrapper.eq(User::getPassWord, userDTO.getPassWord());
+        wrapper.eq(User::getPassWord, userLoginDTO.getPassWord());
         User user = userService.getOne(wrapper);
         if (user == null) {
-            return new Result<User>().genFail("用户密码错误");
+            return BaseResult.error("用户密码错误");
         }
-        return new Result<User>().genSuccessData(user);
+        return BaseResult.success(user);
     }
 
     @ApiOperation(value = "注册用户", notes = "注册用户")
     @PostMapping("/register")
-    public Result<User> registerUser(@Validated @RequestBody User user) {
+    public BaseResult<User> registerUser(@Validated @RequestBody UserRegisterDTO userRegisterDTO) {
         // 判断是否存在重复的手机号
         LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(User::getMobile, user.getMobile());
+        wrapper.eq(User::getMobile, userRegisterDTO.getMobile());
         int count = userService.count(wrapper);
         if (count > 0) {
-            return new Result<User>().genFail("已经存在该手机号");
+            return BaseResult.error("已经存在该手机号");
         }
+        User user = new User();
+        BeanUtils.copyProperties(userRegisterDTO, user);
         boolean state = userService.save(user);
         if (!state) {
-            return new Result<User>().genFail("注册失败");
+            return BaseResult.error("注册失败");
         }
-        return new Result<User>().genSuccessData(user);
+        return BaseResult.success(user);
     }
 
     @ApiOperation(value = "删除用户", notes = "删除用户")
     @DeleteMapping("/delete/{id}")
-    public Result<User> deleteUser(@PathVariable String id) {
-        if (!judgeUserExist(id)) {
-            return new Result<User>().genFail("该用户不存在");
+    public BaseResult<User> deleteUser(@PathVariable String id) {
+        if (judgeUserNotExist(id)) {
+            return BaseResult.error("该用户不存在");
         }
         boolean state = userService.removeById(id);
         if (!state) {
-            return new Result<User>().genFail("删除失败");
+            return BaseResult.error("删除失败");
         }
-        return new Result<User>().genSuccess("删除成功");
+        return BaseResult.success("删除成功");
     }
 
     @ApiOperation(value = "更新用户", notes = "更新用户")
     @PutMapping("/change")
-    public Result<User> insertUser(@Validated @RequestBody User user) {
+    public BaseResult<User> insertUser(@Validated @RequestBody User user) {
         boolean state = userService.updateById(user);
         if (!state) {
-            return new Result<User>().genFail("更新失败");
+            return BaseResult.error("更新失败");
         }
-        return new Result<User>().genSuccessData(user);
+        return BaseResult.success(user);
     }
 
     @ApiOperation(value = "获取指定用户信息", notes = "获取指定用户信息")
     @GetMapping("/findUserInfo/{id}")
-    public Result<User> findUserInfo(@PathVariable String id){
-        if (!judgeUserExist(id)) {
-            return new Result<User>().genFail("该用户不存在");
+    public BaseResult<User> findUserInfo(@PathVariable String id){
+        if (judgeUserNotExist(id)) {
+            return BaseResult.error("该用户不存在");
         }
-        return new Result<User>().genSuccessData(userService.getById(id));
+        return BaseResult.success(userService.getById(id));
     }
 
     @ApiOperation(value = "获取所有用户信息", notes = "获取所有用户信息")
     @GetMapping("/findAll")
-    public Result<List<User>> findAll(){
-        return new Result<List<User>>().genSuccessData(userService.findAll());
+    public BaseResult<List<User>> findAll(){
+        return BaseResult.success(userService.findAll());
     }
 
     /**
@@ -113,15 +117,11 @@ public class UserController {
      * @param id
      * @return
      */
-    public boolean judgeUserExist(String id) {
+    public boolean judgeUserNotExist(String id) {
         LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(User::getId, id);
         int count = userService.count(wrapper);
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count <= 0;
     }
 
 }

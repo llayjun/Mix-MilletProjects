@@ -4,6 +4,7 @@ import com.llayjun.millet.module.banner.entity.Banner;
 import com.llayjun.millet.module.banner.mapper.BannerMapper;
 import com.llayjun.millet.module.banner.service.IBannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.llayjun.millet.module.banner.vo.BannerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
     BannerMapper bannerMapper;
 
     @Override
-    public List<Banner> getBannerList() {
+    public List<BannerVO> getBannerList() {
         return bannerMapper.getBannerList();
     }
 }

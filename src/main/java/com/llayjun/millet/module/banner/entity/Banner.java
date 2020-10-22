@@ -23,7 +23,7 @@ public class Banner extends UUIDBaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(required = true, value = "图片url", example = "http://www.baidu.com")
+    @ApiModelProperty(required = true, value = "图片地址")
     private String imageUrl;
 
 }

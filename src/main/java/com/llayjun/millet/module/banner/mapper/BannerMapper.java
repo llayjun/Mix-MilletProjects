@@ -2,6 +2,7 @@ package com.llayjun.millet.module.banner.mapper;
 
 import com.llayjun.millet.module.banner.entity.Banner;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.llayjun.millet.module.banner.vo.BannerVO;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ import java.util.List;
  */
 public interface BannerMapper extends BaseMapper<Banner> {
 
-    List<Banner> getBannerList();
+    List<BannerVO> getBannerList();
 
 }

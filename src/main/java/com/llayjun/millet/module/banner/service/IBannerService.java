@@ -2,6 +2,7 @@ package com.llayjun.millet.module.banner.service;
 
 import com.llayjun.millet.module.banner.entity.Banner;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.llayjun.millet.module.banner.vo.BannerVO;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ import java.util.List;
  */
 public interface IBannerService extends IService<Banner> {
 
-    List<Banner> getBannerList();
+    List<BannerVO> getBannerList();
 }
