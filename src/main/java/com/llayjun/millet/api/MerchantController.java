@@ -31,6 +31,10 @@ public class MerchantController {
     @Autowired
     private IMerchantService iMerchantService;
 
+    /**
+     * 获取商户列表
+     * @return
+     */
     @ApiOperation(value = "获取推荐商户列表", notes = "获取推荐商户列表")
     @GetMapping("/getMerchantList")
     public BaseResult<List<MerchantVO>> getMerchantList() {

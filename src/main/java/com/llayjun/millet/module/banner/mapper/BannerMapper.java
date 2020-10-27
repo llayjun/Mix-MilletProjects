@@ -16,6 +16,10 @@ import java.util.List;
  */
 public interface BannerMapper extends BaseMapper<Banner> {
 
+    /**
+     * 获取轮播图列表
+     * @return
+     */
     List<BannerVO> getBannerList();
 
 }

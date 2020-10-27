@@ -15,4 +15,7 @@ public class MerchantVO {
     @ApiModelProperty(value = "商户logo", example = "http://xxx")
     private String merchantLogo;
 
+    @ApiModelProperty(value = "商户任务个数", example = "1")
+    private Integer merchantTaskNum;
+
 }

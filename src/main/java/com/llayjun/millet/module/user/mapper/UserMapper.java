@@ -8,5 +8,10 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
+
+    /**
+     * 获取所有用户信息
+     * @return
+     */
     List<User> findAll();
 }

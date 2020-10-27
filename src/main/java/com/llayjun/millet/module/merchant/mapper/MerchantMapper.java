@@ -16,6 +16,10 @@ import java.util.List;
  */
 public interface MerchantMapper extends BaseMapper<Merchant> {
 
+    /**
+     * 获取商户列表
+     * @return
+     */
     List<MerchantVO> getMerchantList();
 
 }

@@ -24,7 +24,7 @@ public class MerchantTask extends UUIDBaseEntity {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "商户id")
-    private Integer merchantId;
+    private String merchantId;
 
     @ApiModelProperty(value = "任务名称")
     private String taskName;

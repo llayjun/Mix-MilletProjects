@@ -15,5 +15,17 @@ import java.util.List;
  * @since 2020-10-27
  */
 public interface MerchantTaskMapper extends BaseMapper<MerchantTask> {
+
+    /**
+     * 获取商户任务列表
+     * @return
+     */
     List<MerchantTaskVO> getMerchantTaskList();
+
+    /**
+     * 通过商户id统计商户发布的任务
+     * @param merchantId
+     * @return
+     */
+    Integer getMerchantTaskCount(String merchantId);
 }

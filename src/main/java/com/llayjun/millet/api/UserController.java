@@ -37,6 +37,11 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 用户登录接口
+     * @param userLoginDTO
+     * @return
+     */
     @ApiOperation(value = "用户登录", notes = "用户登录接口")
     @PostMapping("/userLogin")
     public BaseResult<User> userLogin(@Validated @RequestBody UserLoginDTO userLoginDTO) {
@@ -55,6 +60,11 @@ public class UserController {
         return BaseResult.success(user);
     }
 
+    /**
+     * 用户注册接口
+     * @param userRegisterDTO
+     * @return
+     */
     @ApiOperation(value = "注册用户", notes = "注册用户")
     @PostMapping("/register")
     public BaseResult<User> registerUser(@Validated @RequestBody UserRegisterDTO userRegisterDTO) {
@@ -74,6 +84,11 @@ public class UserController {
         return BaseResult.success(user);
     }
 
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "删除用户", notes = "删除用户")
     @DeleteMapping("/delete/{id}")
     public BaseResult<User> deleteUser(@PathVariable String id) {
@@ -87,6 +102,11 @@ public class UserController {
         return BaseResult.success("删除成功");
     }
 
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
     @ApiOperation(value = "更新用户", notes = "更新用户")
     @PutMapping("/change")
     public BaseResult<User> insertUser(@Validated @RequestBody User user) {
@@ -97,6 +117,11 @@ public class UserController {
         return BaseResult.success(user);
     }
 
+    /**
+     * 获取指定用户信息
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "获取指定用户信息", notes = "获取指定用户信息")
     @GetMapping("/findUserInfo/{id}")
     public BaseResult<User> findUserInfo(@PathVariable String id){
@@ -106,6 +131,10 @@ public class UserController {
         return BaseResult.success(userService.getById(id));
     }
 
+    /**
+     * 获取所有用户
+     * @return
+     */
     @ApiOperation(value = "获取所有用户信息", notes = "获取所有用户信息")
     @GetMapping("/findAll")
     public BaseResult<List<User>> findAll(){

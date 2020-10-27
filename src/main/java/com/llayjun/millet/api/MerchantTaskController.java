@@ -33,6 +33,10 @@ public class MerchantTaskController {
     @Autowired
     IMerchantTaskService iMerchantTaskService;
 
+    /**
+     * 获取商户任务列表
+     * @return
+     */
     @ApiOperation(value = "获取商户任务列表", notes = "获取商户任务列表")
     @GetMapping("/getMerchantTaskList")
     public BaseResult<List<MerchantTaskVO>> getMerchantTaskList() {

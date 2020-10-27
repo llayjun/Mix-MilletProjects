@@ -18,7 +18,7 @@ public class UserRegisterDTO {
     private String name;
 
     @ApiModelProperty(value = "用户性别", required = true)
-    private int sex;
+    private Integer sex;
 
     @ApiModelProperty(value = "用户手机号", required = true)
     @NotBlank(message = "用户手机号不能为空")

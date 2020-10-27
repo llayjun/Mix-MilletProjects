@@ -17,7 +17,7 @@ public class User extends UUIDBaseEntity{
     private String name;
 
     @ApiModelProperty(value = "用户性别", example = "1")
-    private int sex;
+    private Integer sex;
 
     @ApiModelProperty(value = "用户手机号", example = "13142667578")
     private String mobile;

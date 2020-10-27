@@ -15,7 +15,18 @@ import java.util.List;
  * @since 2020-10-27
  */
 public interface IMerchantTaskService extends IService<MerchantTask> {
+    /**
+     * 通过商户id统计任务数量
+     *
+     * @param merchantId
+     * @return
+     */
+    Integer getMerchantTaskCount(String merchantId);
 
+    /**
+     * 获取商户任务列表
+     * @return
+     */
     List<MerchantTaskVO> getMerchantTaskList();
 
 }

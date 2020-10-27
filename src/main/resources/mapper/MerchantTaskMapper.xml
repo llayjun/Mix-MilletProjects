@@ -3,10 +3,19 @@
 <mapper namespace="com.llayjun.millet.module.task.mapper.MerchantTaskMapper">
     <select id="getMerchantTaskList" resultType="com.llayjun.millet.module.task.vo.MerchantTaskVO">
         SELECT
-            merchant_task.*,
-            task_name AS merchantTaskName,
-            task_desc AS merchantTaskDesc,
-            unit_price AS merchantTaskUnitPrice
-        FROM merchant_task;
+            task.id AS id,
+            task.merchant_id AS merchantId,
+            task.task_name AS merchantTaskName,
+            task.task_desc AS merchantTaskDesc,
+            task.unit_price AS merchantTaskUnitPrice,
+            m.merchant_logo AS merchantLogo,
+            m.merchant_name AS merchantName
+        FROM merchant_task task
+            LEFT JOIN merchant m ON task.merchant_id = m.id
     </select>
+
+    <select id="getMerchantTaskCount" resultType="Integer">
+        SELECT COUNT(0) FROM merchant_task WHERE merchant_id = #{merchantId}
+    </select>
+
 </mapper>

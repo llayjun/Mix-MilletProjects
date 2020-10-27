@@ -31,6 +31,10 @@ public class BannerController {
     @Autowired
     private IBannerService iBannerService;
 
+    /**
+     * 轮播图列表
+     * @return
+     */
     @ApiOperation(value = "获取轮播图列表", notes = "获取轮播图列表接口")
     @GetMapping("/getBannerList")
     public BaseResult<List<BannerVO>> getBannerList() {

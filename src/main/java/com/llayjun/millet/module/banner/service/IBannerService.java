@@ -16,5 +16,9 @@ import java.util.List;
  */
 public interface IBannerService extends IService<Banner> {
 
+    /**
+     * 获取轮播图列表
+     * @return
+     */
     List<BannerVO> getBannerList();
 }

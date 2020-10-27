@@ -7,5 +7,9 @@ import com.llayjun.millet.module.user.entity.User;
 
 public interface IUserService extends IService<User> {
 
+    /**
+     * 获取所有用户信息
+     * @return
+     */
     List<User> findAll();
 }
