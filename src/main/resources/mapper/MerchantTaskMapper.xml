@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.llayjun.millet.module.task.mapper.MerchantTaskMapper">
+    <select id="getMerchantTaskList" resultType="com.llayjun.millet.module.task.vo.MerchantTaskVO">
+        SELECT
+            merchant_task.*,
+            task_name AS merchantTaskName,
+            task_desc AS merchantTaskDesc,
+            unit_price AS merchantTaskUnitPrice
+        FROM merchant_task;
+    </select>
+</mapper>
