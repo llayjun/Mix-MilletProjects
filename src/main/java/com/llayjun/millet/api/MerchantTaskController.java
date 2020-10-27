@@ -1,17 +1,18 @@
 package com.llayjun.millet.api;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.llayjun.millet.common.entity.BaseResult;
 import com.llayjun.millet.module.merchant.vo.MerchantVO;
+import com.llayjun.millet.module.task.dto.MerchantTaskPageDTO;
 import com.llayjun.millet.module.task.service.IMerchantTaskService;
 import com.llayjun.millet.module.task.vo.MerchantTaskVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +42,15 @@ public class MerchantTaskController {
     @GetMapping("/getMerchantTaskList")
     public BaseResult<List<MerchantTaskVO>> getMerchantTaskList() {
         return BaseResult.success(iMerchantTaskService.getMerchantTaskList());
+    }
+
+    /**
+     * 获取商户任务列表分页
+     */
+    @ApiOperation(value = "获取商户任务列表分页", notes = "获取商户任务列表分页")
+    @PostMapping("/getMerchantTaskListPage")
+    public BaseResult<IPage<MerchantTaskVO>> getMerchantTaskListPage(@RequestBody @Validated MerchantTaskPageDTO merchantTaskPageDTO) {
+        IPage<MerchantTaskVO> page = new Page<>(merchantTaskPageDTO.getPageNum(), merchantTaskPageDTO.getPageSize());
+        return BaseResult.success(iMerchantTaskService.getMerchantTaskListPage(page, merchantTaskPageDTO));
     }
 }

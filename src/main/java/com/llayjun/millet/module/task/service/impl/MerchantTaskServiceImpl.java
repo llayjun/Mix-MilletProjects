@@ -1,5 +1,7 @@
 package com.llayjun.millet.module.task.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.llayjun.millet.module.task.dto.MerchantTaskPageDTO;
 import com.llayjun.millet.module.task.entity.MerchantTask;
 import com.llayjun.millet.module.task.mapper.MerchantTaskMapper;
 import com.llayjun.millet.module.task.service.IMerchantTaskService;
@@ -32,5 +34,10 @@ public class MerchantTaskServiceImpl extends ServiceImpl<MerchantTaskMapper, Mer
     @Override
     public List<MerchantTaskVO> getMerchantTaskList() {
         return merchantTaskMapper.getMerchantTaskList();
+    }
+
+    @Override
+    public IPage<MerchantTaskVO> getMerchantTaskListPage(IPage<MerchantTaskVO> page, MerchantTaskPageDTO merchantTaskPageDTO) {
+        return merchantTaskMapper.getMerchantTaskListPage(page, merchantTaskPageDTO);
     }
 }

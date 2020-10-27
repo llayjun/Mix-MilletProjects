@@ -1,8 +1,13 @@
 package com.llayjun.millet.module.task.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.llayjun.millet.module.merchant.dto.MerchantPageDTO;
+import com.llayjun.millet.module.merchant.vo.MerchantVO;
+import com.llayjun.millet.module.task.dto.MerchantTaskPageDTO;
 import com.llayjun.millet.module.task.entity.MerchantTask;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.llayjun.millet.module.task.vo.MerchantTaskVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,4 +33,9 @@ public interface MerchantTaskMapper extends BaseMapper<MerchantTask> {
      * @return
      */
     Integer getMerchantTaskCount(String merchantId);
+
+    /**
+     * 获取商户任务列表分页
+     */
+    IPage<MerchantTaskVO> getMerchantTaskListPage(IPage<MerchantTaskVO> page, @Param("dto") MerchantTaskPageDTO merchantTaskPageDTO);
 }
