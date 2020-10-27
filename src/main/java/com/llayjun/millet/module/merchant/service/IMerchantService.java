@@ -1,5 +1,8 @@
 package com.llayjun.millet.module.merchant.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.llayjun.millet.module.merchant.dto.MerchantPageDTO;
 import com.llayjun.millet.module.merchant.entity.Merchant;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.llayjun.millet.module.merchant.vo.MerchantVO;
@@ -22,4 +25,8 @@ public interface IMerchantService extends IService<Merchant> {
      */
     List<MerchantVO> getMerchantList();
 
+    /**
+     * 获取商户列表分页
+     */
+    IPage<MerchantVO> getMerchantListPage(IPage<MerchantVO> page, MerchantPageDTO merchantPageDTO);
 }

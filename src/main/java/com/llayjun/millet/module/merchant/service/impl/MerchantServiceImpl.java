@@ -1,5 +1,7 @@
 package com.llayjun.millet.module.merchant.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.llayjun.millet.module.merchant.dto.MerchantPageDTO;
 import com.llayjun.millet.module.merchant.entity.Merchant;
 import com.llayjun.millet.module.merchant.mapper.MerchantMapper;
 import com.llayjun.millet.module.merchant.service.IMerchantService;
@@ -38,4 +40,17 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantMapper, Merchant> i
         }
         return merchantVOList;
     }
+
+    @Override
+    public IPage<MerchantVO> getMerchantListPage(IPage<MerchantVO> page, MerchantPageDTO merchantPageDTO) {
+        IPage<MerchantVO> merchantVOList = merchantMapper.getMerchantListPage(page, merchantPageDTO);
+        // 商户累计数量
+        for (MerchantVO merchantVO: merchantVOList.getRecords()) {
+            Integer num = iMerchantTaskService.getMerchantTaskCount(merchantVO.getId());
+            merchantVO.setMerchantTaskNum(num);
+        }
+        return merchantVOList;
+    }
+
+
 }
