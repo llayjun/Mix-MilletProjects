@@ -1,9 +1,11 @@
 package com.llayjun.millet.module.task.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.llayjun.millet.module.task.dto.MerchantTaskDetailDTO;
 import com.llayjun.millet.module.task.dto.MerchantTaskPageDTO;
 import com.llayjun.millet.module.task.entity.MerchantTask;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.llayjun.millet.module.task.vo.MerchantTaskDetailVO;
 import com.llayjun.millet.module.task.vo.MerchantTaskVO;
 
 import java.util.List;
@@ -35,5 +37,10 @@ public interface IMerchantTaskService extends IService<MerchantTask> {
      * 获取商户任务列表分页
      */
     IPage<MerchantTaskVO> getMerchantTaskListPage(IPage<MerchantTaskVO> page, MerchantTaskPageDTO merchantTaskPageDTO);
+
+    /**
+     * 企业任务详情
+     */
+    MerchantTaskDetailVO getMerchantTaskDetail(MerchantTaskDetailDTO merchantTaskDetailDTO);
 
 }

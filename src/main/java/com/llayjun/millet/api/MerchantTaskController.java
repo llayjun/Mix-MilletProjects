@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.llayjun.millet.common.entity.BaseResult;
 import com.llayjun.millet.module.merchant.vo.MerchantVO;
+import com.llayjun.millet.module.task.dto.MerchantTaskDetailDTO;
 import com.llayjun.millet.module.task.dto.MerchantTaskPageDTO;
+import com.llayjun.millet.module.task.entity.MerchantTask;
 import com.llayjun.millet.module.task.service.IMerchantTaskService;
+import com.llayjun.millet.module.task.vo.MerchantTaskDetailVO;
 import com.llayjun.millet.module.task.vo.MerchantTaskVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,4 +56,18 @@ public class MerchantTaskController {
         IPage<MerchantTaskVO> page = new Page<>(merchantTaskPageDTO.getPageNum(), merchantTaskPageDTO.getPageSize());
         return BaseResult.success(iMerchantTaskService.getMerchantTaskListPage(page, merchantTaskPageDTO));
     }
+
+    /**
+     * 任务详情
+     */
+    @ApiOperation(value = "任务详情", notes = "任务详情")
+    @PostMapping("/getMerchantTaskDetail")
+    public BaseResult<MerchantTaskDetailVO> getMerchantTaskDetail(@RequestBody @Validated MerchantTaskDetailDTO merchantTaskDetailDTO) {
+        MerchantTask merchantTask = iMerchantTaskService.getById(merchantTaskDetailDTO.getMerchantTaskId());
+        if (merchantTask == null) {
+            return BaseResult.error("该任务不存在");
+        }
+        return BaseResult.success(iMerchantTaskService.getMerchantTaskDetail(merchantTaskDetailDTO));
+    }
+
 }

@@ -45,4 +45,18 @@
         </where>
     </select>
 
+    <select id="getMerchantTaskDetail" resultType="com.llayjun.millet.module.task.vo.MerchantTaskDetailVO">
+        select
+            task.*,
+            m.merchant_name as merchantName,
+            m.merchant_logo as merchantLogo,
+            task.task_name as merchantTaskName,
+            task.task_desc as merchantTaskDesc,
+            task.unit_price as merchantTaskUnitPrice
+        from merchant_task task
+                left join merchant m on task.merchant_id = m.id
+        where
+            task.id = #{dto.merchantTaskId}
+    </select>
+
 </mapper>

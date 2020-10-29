@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.llayjun.millet.module.merchant.entity.MerchantPicture;
 import com.llayjun.millet.module.merchant.mapper.MerchantPictureMapper;
 import com.llayjun.millet.module.merchant.service.IMerchantPictureService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,11 +16,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MerchantPictureServiceImpl extends ServiceImpl<MerchantPictureMapper, MerchantPicture> implements IMerchantPictureService {
-
-    @Autowired
-    MerchantPictureMapper merchantPictureMapper;
-
-    @Autowired
-    IMerchantPictureService iMerchantPictureService;
 
 }
