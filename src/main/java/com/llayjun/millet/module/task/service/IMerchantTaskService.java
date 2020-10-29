@@ -29,7 +29,7 @@ public interface IMerchantTaskService extends IService<MerchantTask> {
      * 获取商户任务列表
      * @return
      */
-    List<MerchantTaskVO> getMerchantTaskList();
+    List<MerchantTaskVO> getMerchantTaskList(String merchantId);
 
     /**
      * 获取商户任务列表分页

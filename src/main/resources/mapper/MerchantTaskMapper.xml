@@ -12,9 +12,14 @@
             m.merchant_name AS merchantName
         FROM merchant_task task
             LEFT JOIN merchant m ON task.merchant_id = m.id
+        <where>
+            <if test="merchantId != null and merchantId != ''">
+                task.merchant_id = #{merchantId}
+            </if>
+        </where>
     </select>
 
-    <select id="getMerchantTaskCount" resultType="Integer">
+    <select id="getMerchantTaskCount" resultType="java.lang.Integer">
         SELECT COUNT(0) FROM merchant_task WHERE merchant_id = #{merchantId}
     </select>
 

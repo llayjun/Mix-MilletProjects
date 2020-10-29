@@ -21,4 +21,14 @@
             </if>
         </where>
     </select>
+
+    <select id="getMerchantDetailInfo" resultType="com.llayjun.millet.module.merchant.vo.MerchantDetailVO">
+        select
+            merchant.*
+        from
+            merchant
+        where
+            id = #{dto.merchantId}
+    </select>
+
 </mapper>

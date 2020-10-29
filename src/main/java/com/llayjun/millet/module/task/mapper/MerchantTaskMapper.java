@@ -25,7 +25,7 @@ public interface MerchantTaskMapper extends BaseMapper<MerchantTask> {
      * 获取商户任务列表
      * @return
      */
-    List<MerchantTaskVO> getMerchantTaskList();
+    List<MerchantTaskVO> getMerchantTaskList(String merchantId);
 
     /**
      * 通过商户id统计商户发布的任务

@@ -5,9 +5,11 @@ import com.llayjun.millet.common.entity.UUIDBaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 @Accessors(chain = true)
 @TableName("user")
 @ApiModel(value="User对象")

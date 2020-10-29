@@ -32,8 +32,8 @@ public class MerchantTaskServiceImpl extends ServiceImpl<MerchantTaskMapper, Mer
     }
 
     @Override
-    public List<MerchantTaskVO> getMerchantTaskList() {
-        return merchantTaskMapper.getMerchantTaskList();
+    public List<MerchantTaskVO> getMerchantTaskList(String merchantId) {
+        return merchantTaskMapper.getMerchantTaskList(merchantId);
     }
 
     @Override

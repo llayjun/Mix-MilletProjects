@@ -1,12 +1,19 @@
 package com.llayjun.millet.api;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.llayjun.millet.common.entity.BaseResult;
+import com.llayjun.millet.module.merchant.dto.MerchantDetailDTO;
 import com.llayjun.millet.module.merchant.dto.MerchantPageDTO;
+import com.llayjun.millet.module.merchant.entity.Merchant;
 import com.llayjun.millet.module.merchant.service.IMerchantService;
+import com.llayjun.millet.module.merchant.vo.MerchantDetailVO;
 import com.llayjun.millet.module.merchant.vo.MerchantVO;
+import com.llayjun.millet.module.user.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +59,19 @@ public class MerchantController {
     public BaseResult<IPage<MerchantVO>> getMerchantListPage(@RequestBody @Validated MerchantPageDTO merchantPageDTO) {
         IPage<MerchantVO> page = new Page<>(merchantPageDTO.getPageNum(), merchantPageDTO.getPageSize());
         return BaseResult.success(iMerchantService.getMerchantListPage(page, merchantPageDTO));
+    }
+
+    /**
+     * 获取商户详情
+     */
+    @ApiOperation(value = "获取商户详情信息", notes = "获取商户详情信息")
+    @PostMapping("/getMerchantDetail")
+    public BaseResult<MerchantDetailVO> getMerchantDetail(@RequestBody @Validated MerchantDetailDTO merchantDetailDTO) {
+        Merchant merchant = iMerchantService.getById(merchantDetailDTO.getMerchantId());
+        if (merchant == null) {
+            return BaseResult.error("该商户不存在");
+        }
+        return BaseResult.success(iMerchantService.getMerchantDetail(merchantDetailDTO));
     }
 
 }

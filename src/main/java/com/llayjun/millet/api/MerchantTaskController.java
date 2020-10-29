@@ -40,8 +40,8 @@ public class MerchantTaskController {
      */
     @ApiOperation(value = "获取商户任务列表", notes = "获取商户任务列表")
     @GetMapping("/getMerchantTaskList")
-    public BaseResult<List<MerchantTaskVO>> getMerchantTaskList() {
-        return BaseResult.success(iMerchantTaskService.getMerchantTaskList());
+    public BaseResult<List<MerchantTaskVO>> getMerchantTaskList(String merchantId) {
+        return BaseResult.success(iMerchantTaskService.getMerchantTaskList(merchantId));
     }
 
     /**
