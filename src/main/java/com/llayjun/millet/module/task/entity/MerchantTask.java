@@ -32,6 +32,9 @@ public class MerchantTask extends UUIDBaseEntity {
     @ApiModelProperty(value = "任务描述")
     private String taskDesc;
 
+    @ApiModelProperty(value = "任务地址")
+    private String taskLocation;
+
     @ApiModelProperty(value = "单价")
     private Float unitPrice;
 

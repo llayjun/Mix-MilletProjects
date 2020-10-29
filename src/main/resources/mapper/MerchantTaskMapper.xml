@@ -8,6 +8,8 @@
             task.task_name AS merchantTaskName,
             task.task_desc AS merchantTaskDesc,
             task.unit_price AS merchantTaskUnitPrice,
+            task.task_location AS taskLocation,
+            task.created_time AS createdTime,
             m.merchant_logo AS merchantLogo,
             m.merchant_name AS merchantName
         FROM merchant_task task
@@ -30,6 +32,8 @@
             task.task_name AS merchantTaskName,
             task.task_desc AS merchantTaskDesc,
             task.unit_price AS merchantTaskUnitPrice,
+            task.task_location AS taskLocation,
+            task.created_time AS createdTime,
             m.merchant_logo AS merchantLogo,
             m.merchant_name AS merchantName
         FROM merchant_task task

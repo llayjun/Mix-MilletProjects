@@ -38,7 +38,7 @@ public class MerchantDetailVO {
     private String funds;
 
     @ApiModelProperty(value = "商户经营范围", example = "xxx")
-    private String range;
+    private String merchantRange;
 
     @ApiModelProperty(value = "商户任务个数", example = "1")
     private Integer merchantTaskNum;
