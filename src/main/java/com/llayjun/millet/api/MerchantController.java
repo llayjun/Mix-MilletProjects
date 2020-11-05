@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.llayjun.millet.common.annotation.UserToken;
 import com.llayjun.millet.common.entity.BaseResult;
 import com.llayjun.millet.module.merchant.dto.MerchantDetailDTO;
 import com.llayjun.millet.module.merchant.dto.MerchantPageDTO;
@@ -46,6 +47,7 @@ public class MerchantController {
      */
     @ApiOperation(value = "获取推荐商户列表", notes = "获取推荐商户列表")
     @GetMapping("/getMerchantList")
+    @UserToken
     public BaseResult<List<MerchantVO>> getMerchantList() {
         return BaseResult.success(iMerchantService.getMerchantList());
     }
@@ -56,6 +58,7 @@ public class MerchantController {
      */
     @ApiOperation(value = "获取商户分页列表", notes = "获取商户分页列表")
     @PostMapping("/getMerchantListPage")
+    @UserToken
     public BaseResult<IPage<MerchantVO>> getMerchantListPage(@RequestBody @Validated MerchantPageDTO merchantPageDTO) {
         IPage<MerchantVO> page = new Page<>(merchantPageDTO.getPageNum(), merchantPageDTO.getPageSize());
         return BaseResult.success(iMerchantService.getMerchantListPage(page, merchantPageDTO));
@@ -66,6 +69,7 @@ public class MerchantController {
      */
     @ApiOperation(value = "获取商户详情信息", notes = "获取商户详情信息")
     @PostMapping("/getMerchantDetail")
+    @UserToken
     public BaseResult<MerchantDetailVO> getMerchantDetail(@RequestBody @Validated MerchantDetailDTO merchantDetailDTO) {
         Merchant merchant = iMerchantService.getById(merchantDetailDTO.getMerchantId());
         if (merchant == null) {

@@ -3,10 +3,12 @@ package com.llayjun.millet.api;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.llayjun.millet.common.entity.BaseResult;
+import com.llayjun.millet.common.utils.JwtTokenUtil;
 import com.llayjun.millet.module.user.dto.UserLoginDTO;
 import com.llayjun.millet.module.user.dto.UserRegisterDTO;
 import com.llayjun.millet.module.user.entity.User;
 import com.llayjun.millet.module.user.service.IUserService;
+import com.llayjun.millet.module.user.vo.UserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -44,7 +46,7 @@ public class UserController {
      */
     @ApiOperation(value = "用户登录", notes = "用户登录接口")
     @PostMapping("/userLogin")
-    public BaseResult<User> userLogin(@Validated @RequestBody UserLoginDTO userLoginDTO) {
+    public BaseResult<UserVO> userLogin(@Validated @RequestBody UserLoginDTO userLoginDTO) {
         // 判断是否存在重复的手机号
         LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(User::getMobile, userLoginDTO.getMobile());
@@ -57,7 +59,11 @@ public class UserController {
         if (user == null) {
             return BaseResult.error("用户密码错误");
         }
-        return BaseResult.success(user);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
+        String token = JwtTokenUtil.buildJWTToken(user.getId());
+        userVO.setAuthorization(token);
+        return BaseResult.success(userVO);
     }
 
     /**

@@ -1,9 +1,13 @@
 package com.llayjun.millet.api;
 
 
+import com.llayjun.millet.common.annotation.CurrentUser;
+import com.llayjun.millet.common.annotation.UserToken;
 import com.llayjun.millet.common.entity.BaseResult;
 import com.llayjun.millet.module.banner.service.IBannerService;
 import com.llayjun.millet.module.banner.vo.BannerVO;
+import com.llayjun.millet.module.user.entity.User;
+import com.llayjun.millet.module.user.vo.UserInfoVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +41,7 @@ public class BannerController {
      */
     @ApiOperation(value = "获取轮播图列表", notes = "获取轮播图列表接口")
     @GetMapping("/getBannerList")
+    @UserToken
     public BaseResult<List<BannerVO>> getBannerList() {
         return BaseResult.success(iBannerService.getBannerList());
     }

@@ -3,6 +3,7 @@ package com.llayjun.millet.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.llayjun.millet.common.annotation.UserToken;
 import com.llayjun.millet.common.entity.BaseResult;
 import com.llayjun.millet.module.merchant.vo.MerchantVO;
 import com.llayjun.millet.module.task.dto.MerchantTaskDetailDTO;
@@ -43,6 +44,7 @@ public class MerchantTaskController {
      */
     @ApiOperation(value = "获取商户任务列表", notes = "获取商户任务列表")
     @GetMapping("/getMerchantTaskList")
+    @UserToken
     public BaseResult<List<MerchantTaskVO>> getMerchantTaskList(String merchantId) {
         return BaseResult.success(iMerchantTaskService.getMerchantTaskList(merchantId));
     }
@@ -52,6 +54,7 @@ public class MerchantTaskController {
      */
     @ApiOperation(value = "获取商户任务列表分页", notes = "获取商户任务列表分页")
     @PostMapping("/getMerchantTaskListPage")
+    @UserToken
     public BaseResult<IPage<MerchantTaskVO>> getMerchantTaskListPage(@RequestBody @Validated MerchantTaskPageDTO merchantTaskPageDTO) {
         IPage<MerchantTaskVO> page = new Page<>(merchantTaskPageDTO.getPageNum(), merchantTaskPageDTO.getPageSize());
         return BaseResult.success(iMerchantTaskService.getMerchantTaskListPage(page, merchantTaskPageDTO));
@@ -62,6 +65,7 @@ public class MerchantTaskController {
      */
     @ApiOperation(value = "任务详情", notes = "任务详情")
     @PostMapping("/getMerchantTaskDetail")
+    @UserToken
     public BaseResult<MerchantTaskDetailVO> getMerchantTaskDetail(@RequestBody @Validated MerchantTaskDetailDTO merchantTaskDetailDTO) {
         MerchantTask merchantTask = iMerchantTaskService.getById(merchantTaskDetailDTO.getMerchantTaskId());
         if (merchantTask == null) {

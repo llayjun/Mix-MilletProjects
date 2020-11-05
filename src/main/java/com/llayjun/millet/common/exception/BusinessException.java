@@ -11,10 +11,8 @@ import lombok.Data;
 public class BusinessException extends RuntimeException {
     private Integer code;
 
-    private String message;
-
-    public BusinessException(BusinessExceptionEnum businessExceptionEnum) {
-        this.code = businessExceptionEnum.code();
-        this.message = businessExceptionEnum.message();
+    public BusinessException(Integer code, String message){
+        super(message);
+        this.code = code;
     }
 }
