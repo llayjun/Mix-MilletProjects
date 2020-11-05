@@ -134,6 +134,7 @@ public class UserController {
         if (judgeUserNotExist(id)) {
             return BaseResult.error("该用户不存在");
         }
+
         return BaseResult.success(userService.getById(id));
     }
 
