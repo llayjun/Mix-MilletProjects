@@ -26,6 +26,7 @@ import static com.llayjun.millet.common.constant.Constants.APP_URI_V1;
  *
  * @author zyl
  * @since 2020-07-07
+ *
  */
 @RestController
 @Api(tags = "轮播图接口")
