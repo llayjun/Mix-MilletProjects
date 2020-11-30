@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.llayjun.millet.module.article.mapper.ArticleMapper">
+
+    <select id="getArticleList" resultType="com.llayjun.millet.module.article.entity.Article">
+        select *
+        from article
+        <where>
+            <if test="dto.articleType != null and dto.articleType != ''">
+                article_type = #{dto.articleType}
+            </if>
+            <if test="dto.content != null and dto.content != ''">
+                and article_title like CONCAT('%',#{dto.content},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
