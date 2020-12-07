@@ -5,9 +5,9 @@ spring:
   # 1 driver-class-name -> register driver
   # 2 url username password -> get Connect
   datasource:
-    username: llayjun
-    password: 1218543596
-    url: jdbc:mysql://139.224.40.178:3306/millet?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: xxxx
+    password: xxxx
+    url: jdbc:mysql://xxxx/millet?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
