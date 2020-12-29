@@ -39,7 +39,6 @@ public class CurrentUserHandlerMethodArgResolver implements HandlerMethodArgumen
         // 取出session中的User
         UserInfoVO userInfoVO = (UserInfoVO) request.getSession().getAttribute("currentUser");
         log.info("currentUser id：{}", userInfoVO.getId());
-        System.out.println("currentUserId：" + userInfoVO.getName());
         return userInfoVO;
     }
 

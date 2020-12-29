@@ -1,5 +1,8 @@
+runtime:
+  env: dev
+
 server:
-  port: 8080
+  port: 8081
 
 spring:
   # 1 driver-class-name -> register driver
@@ -22,3 +25,4 @@ mybatis-plus:
 logging:
   level:
     com.llayjun.millet.module.*.mapper: debug
+  config: classpath:logback-spring.xml

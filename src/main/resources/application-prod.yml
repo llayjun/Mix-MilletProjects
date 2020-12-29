@@ -1,8 +1,8 @@
 runtime:
-  env: dev
+  env: prod
 
 server:
-  port: 8081
+  port: 8082
 
 spring:
   # 1 driver-class-name -> register driver

@@ -24,5 +24,15 @@ public class UserInfoVO {
     @ApiModelProperty(value = "用户密码", example = "12345678", hidden = true)
     private String passWord;
 
+    @Override
+    public String toString() {
+        return "UserInfoVO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", mobile='" + mobile + '\'' +
+                ", passWord='" + passWord + '\'' +
+                '}';
+    }
 }
 
