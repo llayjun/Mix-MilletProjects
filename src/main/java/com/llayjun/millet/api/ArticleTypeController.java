@@ -45,6 +45,7 @@ public class ArticleTypeController {
     public BaseResult addArticleType(@Validated @RequestBody AddArticleTypeDTO addArticleTypeDTO) {
         if (addArticleTypeDTO.getArticleType() == 0) {
             return BaseResult.error("不可使用0类型");
+
         }
         // 判断该类型是否存在
         LambdaQueryWrapper<ArticleType> wrapper = Wrappers.lambdaQuery();
