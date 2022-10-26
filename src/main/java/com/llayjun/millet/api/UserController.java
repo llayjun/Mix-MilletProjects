@@ -30,6 +30,9 @@ import static com.llayjun.millet.common.constant.Constants.APP_URI_V1;
 @EnableAutoConfiguration
 public class UserController {
 
+    // swagger地址：
+    // http://localhost:8080/swagger-ui.html
+    // http://localhost:8080/doc.html
     @GetMapping("/hello")
     @ApiOperation(value = "测试文字接口", notes = "测试文字接口", hidden = true)
     public String hello() {
